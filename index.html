@@ -10,10 +10,10 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #fff5f5;  /* fundo rosa bem clarinho */
         }
         header {
-            background-color: #ff9800;
+            background-color: #ff6b6b;  /* vermelho claro principal */
             color: white;
             padding: 20px;
             text-align: center;
@@ -27,9 +27,12 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         h2 {
-            color: #ff9800;
-            border-bottom: 2px solid #ff9800;
+            color: #ff6b6b;  /* vermelho claro */
+            border-bottom: 2px solid #ff6b6b;
             padding-bottom: 10px;
+        }
+        h3 {
+            color: #e74c3c;  /* vermelho um pouco mais forte */
         }
         .grafo {
             text-align: center;
@@ -40,19 +43,30 @@
             border-collapse: collapse;
         }
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #ffcccc;  /* borda vermelha clara */
             padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #ff9800;
+            background-color: #ff6b6b;  /* vermelho claro */
             color: white;
         }
         .passo {
-            background-color: #e3f2fd;
+            background-color: #ffe6e6;  /* fundo rosa bem clarinho */
             padding: 10px;
             margin: 10px 0;
-            border-left: 4px solid #2196f3;
+            border-left: 4px solid #ff6b6b;  /* barra lateral vermelha */
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 10px;
+        }
+        a {
+            color: #e74c3c;  /* links vermelhos */
         }
     </style>
 </head>
@@ -66,10 +80,10 @@
     <section>
         <h2>📚 1. Conceitos Teóricos</h2>
         <h3>O que é um Grafo?</h3>
-        <p>Um grafo é uma estrutura matemática formada por <strong>vértices</strong> (pontos) e <strong>arestas</strong> (conexões). Na Vila dos Miados, os vértices são os lugares e as arestas são os caminhos possíveis.</p>
+        <p> explique</p>
         
         <h3>O que é o Algoritmo de Dijkstra?</h3>
-        <p>É um algoritmo que encontra o <strong>menor caminho</strong> entre dois vértices em um grafo com pesos positivos. Ele funciona visitando os vértices em ordem de distância mínima conhecida.</p>
+        <p> explique</p>
     </section>
 
     <section>
@@ -79,9 +93,9 @@
             <tr><th>Código</th><th>Nome</th><th>Descrição</th></tr>
             <tr><td><strong>T</strong></td><td>Telhado Central</td><td>Ponto de partida comum</td></tr>
             <tr><td><strong>B</strong></td><td>Beco Escuro</td><td>Atalho perigoso</td></tr>
-            <tr><td><strong>P</strong></td><td>Praça do Peixe</td><td>Seguro, mas distante</td></tr>
+            <tr><td><strong>P</strong></td><td>Praça dos Amigos</td><td>Seguro, mas distante</td></tr>
             <tr><td><strong>M</strong></td><td>Muro Alto</td><td>Exige esforço</td></tr>
-            <tr><td><strong>J</strong></td><td>Janela Amarela</td><td>Destino desejado</td></tr>
+            <tr><td><strong>J</strong></td><td>Janela Verde</td><td>Destino desejado</td></tr>
         </table>
 
         <h3>Arestas e Pesos (tempo/esforço)</h3>
