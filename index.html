@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vila dos Miados - Grupo Larissa, Suzana, Leonardo, Nathan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #ff9800;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #ff9800;
+            border-bottom: 2px solid #ff9800;
+            padding-bottom: 10px;
+        }
+        .grafo {
+            text-align: center;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ff9800;
+            color: white;
+        }
+        .passo {
+            background-color: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐱 Vila dos Miados</h1>
+        <p>Grupo: Larissa, Suzana, Leonardo, Nathan</p>
+        <p>Matemática Discreta - Algoritmo de Dijkstra</p>
+    </header>
+
+    <section>
+        <h2>📚 1. Conceitos Teóricos</h2>
+        <h3>O que é um Grafo?</h3>
+        <p>Um grafo é uma estrutura matemática formada por <strong>vértices</strong> (pontos) e <strong>arestas</strong> (conexões). Na Vila dos Miados, os vértices são os lugares e as arestas são os caminhos possíveis.</p>
+        
+        <h3>O que é o Algoritmo de Dijkstra?</h3>
+        <p>É um algoritmo que encontra o <strong>menor caminho</strong> entre dois vértices em um grafo com pesos positivos. Ele funciona visitando os vértices em ordem de distância mínima conhecida.</p>
+    </section>
+
+    <section>
+        <h2>🐾 2. Modelagem da Vila dos Miados</h2>
+        <h3>Vértices (lugares)</h3>
+        <table>
+            <tr><th>Código</th><th>Nome</th><th>Descrição</th></tr>
+            <tr><td><strong>T</strong></td><td>Telhado Central</td><td>Ponto de partida comum</td></tr>
+            <tr><td><strong>B</strong></td><td>Beco Escuro</td><td>Atalho perigoso</td></tr>
+            <tr><td><strong>P</strong></td><td>Praça do Peixe</td><td>Seguro, mas distante</td></tr>
+            <tr><td><strong>M</strong></td><td>Muro Alto</td><td>Exige esforço</td></tr>
+            <tr><td><strong>J</strong></td><td>Janela Amarela</td><td>Destino desejado</td></tr>
+        </table>
+
+        <h3>Arestas e Pesos (tempo/esforço)</h3>
+        <table>
+            <tr><th>Origem</th><th>Destino</th><th>Peso</th><th>Justificativa</th></tr>
+            <tr><td>T</td><td>B</td><td>3</td><td>Escuro, mas curto</td></tr>
+            <tr><td>T</td><td>P</td><td>5</td><td>Longo, porém seguro</td></tr>
+            <tr><td>T</td><td>J</td><td>8</td><td>Direto, mas cheio de cães</td></tr>
+            <tr><td>B</td><td>M</td><td>2</td><td>Pulo rápido</td></tr>
+            <tr><td>B</td><td>J</td><td>6</td><td>Beco + escada cansativa</td></tr>
+            <tr><td>P</td><td>M</td><td>4</td><td>Obstáculos no caminho</td></tr>
+            <tr><td>M</td><td>J</td><td>1</td><td>Janela aberta (muito fácil!)</td></tr>
+        </table>
+
+        <div class="grafo">
+            <h3>Representação do Grafo</h3>
+            <pre style="background:#eee;padding:15px;display:inline-block;text-align:left">
+    T -----3----- B
+    |\           /|
+    | \         / |
+    |  5       2  |
+    |   \     /   |
+    |    \   /    |
+    |     P       |
+    |     |       |
+    |     4       |
+    |     |       |
+    |     M       |
+    |     |       |
+    |     1       |
+    |     |       |
+    +-----J-------+
+    (aresta direta T-J = 8)
+    (aresta B-J = 6)
+            </pre>
+            <p><em>Grafo não direcionado com 5 vértices e 7 arestas</em></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🧮 3. Algoritmo de Dijkstra - Passo a Passo</h2>
+        <h3>Teste 1: Telhado (T) → Janela (J)</h3>
+        
+        <div class="passo">
+            <strong>Passo 1:</strong> Distâncias iniciais: T=0, B=∞, P=∞, M=∞, J=∞<br>
+            Visitados: {T}
+        </div>
+        <div class="passo">
+            <strong>Passo 2:</strong> Visitando T → relaxando arestas:<br>
+            T→B: 0+3=3 → B=3 ✓<br>
+            T→P: 0+5=5 → P=5 ✓<br>
+            T→J: 0+8=8 → J=8 ✓<br>
+            Distâncias: T=0, B=3, P=5, M=∞, J=8
+        </div>
+        <div class="passo">
+            <strong>Passo 3:</strong> Menor distância não visitada: B(3). Visitar B.<br>
+            B→M: 3+2=5 → M=5 (anterior ∞)<br>
+            B→J: 3+6=9 → J permanece 8 (9 é maior)<br>
+            Distâncias: T=0, B=3, P=5, M=5, J=8
+        </div>
+        <div class="passo">
+            <strong>Passo 4:</strong> Menor não visitada: P(5) ou M(5). Visitar P.<br>
+            P→M: 5+4=9 → M permanece 5 (9 é maior)<br>
+            Distâncias: T=0, B=3, P=5, M=5, J=8
+        </div>
+        <div class="passo">
+            <strong>Passo 5:</strong> Visitar M(5).<br>
+            M→J: 5+1=6 → J atualiza: 8 → 6 ✓<br>
+            Distâncias finais: T=0, B=3, P=5, M=5, J=6
+        </div>
+        <div class="passo">
+            <strong>Passo 6:</strong> Visitar J(6). Algoritmo concluído.
+        </div>
+
+        <h4>✅ Resultado Teste 1:</h4>
+        <p><strong>Caminho mais curto: T → B → M → J</strong></p>
+        <p>Custo total: 3 + 2 + 1 = <strong>6</strong></p>
+        <p>(Alternativa direta T→J custa 8, mais caro)</p>
+
+        <h3>Teste 2: Praça (P) → Janela (J)</h3>
+        <div class="passo">
+            <strong>Passo 1:</strong> Distâncias: P=0, T=∞, B=∞, M=∞, J=∞
+        </div>
+        <div class="passo">
+            <strong>Passo 2:</strong> Visitar P → P=0, atualiza: T=5, M=4<br>
+            Distâncias: P=0, T=5, B=∞, M=4, J=∞
+        </div>
+        <div class="passo">
+            <strong>Passo 3:</strong> Menor não visitado: M(4). Visitar M → M=4, atualiza: J=5 (4+1), B=6 (4+2)<br>
+            Distâncias: P=0, T=5, B=6, M=4, J=5
+        </div>
+        <div class="passo">
+            <strong>Passo 4:</strong> Menor não visitado: T(5) ou J(5). Visitar T → T=5, não melhora J (5+8=13)<br>
+            Distâncias: P=0, T=5, B=6, M=4, J=5
+        </div>
+        <div class="passo">
+            <strong>Passo 5:</strong> Visitar J(5) → algoritmo concluído.
+        </div>
+
+        <h4>✅ Resultado Teste 2:</h4>
+        <p><strong>Caminho mais curto: P → M → J</strong></p>
+        <p>Custo total: 4 + 1 = <strong>5</strong></p>
+    </section>
+
+    <section>
+        <h2>📊 4. Análise dos Resultados</h2>
+        <p>O algoritmo de Dijkstra encontrou caminhos que <strong>não são os mais óbvios</strong>:</p>
+        <ul>
+            <li>De Telhado à Janela, o caminho direto parecia rápido, mas o algoritmo mostrou que o caminho <strong>T→B→M→J</strong> é melhor (custo 6 vs 8).</li>
+            <li>De Praça à Janela, o caminho <strong>P→M→J</strong> foi o escolhido (custo 5), ignorando caminhos mais longos.</li>
+            <li>Isso mostra como o algoritmo avalia <strong>combinações de arestas</strong> em vez de apenas rotas diretas.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>💻 5. Pseudocódigo do Algoritmo</h2>
+        <pre style="background:#eee;padding:15px;overflow-x:auto">
+function Dijkstra(grafo, origem, destino):
+    distancias[origem] = 0
+    for each vértice v in grafo:
+        if v != origem:
+            distancias[v] = infinito
+        nao_visitados.add(v)
+    
+    while nao_visitados não está vazio:
+        u = vértice em nao_visitados com menor distância
+        nao_visitados.remove(u)
+        
+        for each vizinho v de u:
+            if v está em nao_visitados:
+                nova_dist = distancias[u] + peso(u,v)
+                if nova_dist < distancias[v]:
+                    distancias[v] = nova_dist
+                    predecessor[v] = u
+    
+    return distancias[destino], reconstruir_caminho(predecessor, destino)
+        </pre>
+    </section>
+
+    <footer style="text-align:center;margin-top:30px;padding:20px;background:#333;color:white;border-radius:10px">
+        <p>Trabalho de Matemática Discreta - Vila dos Miados</p>
+        <p>Grupo: Larissa, Suzana, Leonardo, Nathan</p>
+    </footer>
+</body>
+</html>
