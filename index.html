@@ -89,7 +89,7 @@
     <section>
         <h2>🐾 2. Modelagem da Vila dos Miados</h2>
 
-        h3>📍 Passo 1: Os 5 Vértices (pontos da vila)</h3>
+    <h3>📍 Passo 1: Os 5 Vértices (pontos da vila)</h3>
     <table border="1" style="border-collapse: collapse; width: 100%;">
         <thead style="background-color: #ff6b6b; color: white;">
             <tr>
@@ -101,9 +101,9 @@
         <tbody>
             <tr><td><strong>T</strong></td><td>Telhado Central</td><td>Ponto de partida comum, visão privilegiada</td></tr>
             <tr><td><strong>B</strong></td><td>Beco Escuro</td><td>Muitos atalhos, porém perigoso</td></tr>
-            <tr><td><strong>P</strong></td><td>Praça do Peixe</td><td>Muitos atalhos, porém perigoso</td></tr>
+            <tr><td><strong>P</strong></td><td>Praça dos Amigos</td><td>Espaço aberto, movimentado por humanos</td></tr>
             <tr><td><strong>M</strong></td><td>Muro Alto</td><td>Exige esforço, mas conecta caminhos</td></tr>
-            <tr><td><strong>J</strong></td><td>Janela Amarela</td><td>Destino desejado (entrada da casa)</td></tr>
+            <tr><td><strong>J</strong></td><td>Janela Verde</td><td>Destino desejado (entrada da casa)</td></tr>
         </tbody>
     </table>
         
@@ -111,18 +111,18 @@
     <h3>🔗 Passo 2: Arestas (quais caminhos existem)</h3>
     <p>Decidimos as seguintes conexões entre os vértices:</p>
     <ul>
-        <li><strong>T</strong> (Telhado) se conecta com: <strong>B, P, J</strong></li>
+        <li><strong>T</strong> (Telhado) se conecta com: <strong>B, P, M</strong></li>
         <li><strong>B</strong> (Beco) se conecta com: <strong>T, M, J</strong></li>
-        <li><strong>P</strong> (Praça) se conecta com: <strong>T, M</strong></li>
+        <li><strong>P</strong> (Praça) se conecta com: <strong>T, M, J</strong></li>
         <li><strong>M</strong> (Muro) se conecta com: <strong>B, P, J</strong></li>
-        <li><strong>J</strong> (Janela) se conecta com: <strong>T, B, M</strong></li>
+        <li><strong>J</strong> (Janela) se conecta com: <strong>B, M, P</strong></li>
     </ul>
 
-    <!-- Passo 3: Pesos -->
-    <h3>⚖️ Passo 3: Pesos (tempo/esforço/risco)</h3>
-    <p>Cada aresta recebe um peso de 1 a 10. Quanto menor o peso, melhor para o gato.</p>
-    
-   <table border="1" style="border-collapse: collapse; width: 100%;">
+  <!-- Passo 3: Pesos -->
+<h3>⚖️ Passo 3: Pesos (tempo/esforço/risco)</h3>
+<p>Cada aresta recebe um peso de 1 a 10. Quanto menor o peso, melhor para o gato.</p>
+
+<table border="1" style="border-collapse: collapse; width: 100%;">
     <thead style="background-color: #ff6b6b; color: white;">
         <tr>
             <th>De</th>
@@ -136,106 +136,104 @@
             <td>T</td>
             <td>B</td>
             <td style="text-align: center;">5</td>
-            <td>Curto, mas escuro (atenção)</td>
+            <td>Caminho de distância média, escuro e com pequeno salto</td>
         </tr>
         <tr>
             <td>T</td>
             <td>P</td>
-            <td style="text-align: center;">4</td>
-            <td>Longo, mas sem perigos</td>
+            <td style="text-align: center;">3</td>
+            <td>Caminho longo, porém totalmente seguro e sem necessidade de salto</td>
         </tr>
         <tr>
             <td>T</td>
-            <td>J</td>
-            <td style="text-align: center;">8</td>
-            <td>Pulo pequeno, mas precisa ser certeiro para não cair</td>
-        </tr>
-        <tr>
-            <td>B</td>
             <td>M</td>
             <td style="text-align: center;">2</td>
-            <td>Rápido e seguro</td>
+            <td>Pulo curto entre telhado e muro, distância segura</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>M</td>
+            <td style="text-align: center;">3</td>
+            <td>Caminho curto, mas em área escura</td>
         </tr>
         <tr>
             <td>B</td>
             <td>J</td>
             <td style="text-align: center;">7</td>
-            <td>Beco longo e escuro, cuidado ao pular</td>
+            <td>Disntância média, com obstáculos e um salto</td>
         </tr>
         <tr>
             <td>P</td>
             <td>M</td>
-            <td style="text-align: center;">7</td>
-            <td>Obstáculos (pessoas, etc.)</td>
+            <td style="text-align: center;">5</td>
+            <td>Distância média, trecho escuro e pequeno salto</td>
         </tr>
         <tr>
             <td>M</td>
             <td>J</td>
             <td style="text-align: center;">1</td>
-            <td>Fácil, se estão na mesma altura</td>
+            <td>Caminho muito curto, seguro e sem necessidade de salto</td>
+        </tr>
+          <tr>
+            <td>P</td>
+            <td>J</td>
+            <td style="text-align: center;">6</td>
+            <td>Caminho mais longo, trecho escuro e pequeno salto</td>
         </tr>
     </tbody>
 </table>
 
 <!-- Lista completa de arestas -->
-<h4>📝 Resumo das 7 arestas com seus pesos:</h4>
+<h4>📝 Resumo das 8 arestas com seus pesos:</h4>
 <ul>
     <li><strong>T — B</strong> (peso 5)</li>
-    <li><strong>T — P</strong> (peso 4)</li>
-    <li><strong>T — J</strong> (peso 8)</li>
-    <li><strong>B — M</strong> (peso 2)</li>
+    <li><strong>T — P</strong> (peso 3)</li>
+    <li><strong>T — M</strong> (peso 2)</li>
+    <li><strong>B — M</strong> (peso 3)</li>
     <li><strong>B — J</strong> (peso 7)</li>
-    <li><strong>P — M</strong> (peso 7)</li>
+    <li><strong>P — M</strong> (peso 5)</li>
     <li><strong>M — J</strong> (peso 1)</li>
+    <li><strong>P — J</strong> (peso 6)</li>
 </ul>
 
-<h3>📐 Função Relevante (Critério do Grafo)</h3>
-<p><strong>f(u, v) = t + p + a</strong></p>
-<ul style="margin-top: 5px; margin-bottom: 10px;">
-<li><strong>t</strong> = tempo base: 1 (muito rápido), 2 (rápido), 3 (médio), 4 (longo)</li>
-<li><strong>p</strong> = perigo: 0 (seguro), 1 (escuro), 2 (obstáculos), 3 (perigo+escuro), 4 (risco queda)</li>
-<li><strong>a</strong> = precisão: 0, +1 ou +2</li>
+<h3>📐 Função Relevante</h3>
+<p><strong>Função de Esforço Felino: E(u,v) = d + 2r + s</strong></p>
+<p>Onde:</p>
+<ul>
+<li><strong>d</strong> = distância: 1 (pulo curto), 2 (médio), 3 (longo), 4 (muito longo)</li>
+<li><strong>r</strong> = risco: 0 (seguro), 1 (escuro), 2 (obstáculos), 3 (cães/perigo alto)</li>
+<li><strong>s</strong> = salto: 0 (mesma altura/fácil), 1 (pulo pequeno), 2 (pulo arriscado)</li>
 </ul>
 <table border="1" style="border-collapse: collapse; width: 100%;">
-<thead style="background-color: #ff6b6b; color: white;"><tr><th>Aresta</th><th>t</th><th>p</th><th>a</th><th>Peso</th></tr></thead>
+<thead style="background-color: #ff6b6b; color: white;"><tr><th>Aresta</th><th>d</th><th>r</th><th>s</th><th>Cálculo</th><th>Peso</th></tr></thead>
 <tbody>
-<tr><td>T→B</td><td style="text-align:center">3</td><td style="text-align:center">1</td><td style="text-align:center">+1</td><td style="text-align:center"><strong>5</strong></td></tr>
-<tr><td>T→P</td><td style="text-align:center">3</td><td style="text-align:center">0</td><td style="text-align:center">+1</td><td style="text-align:center"><strong>4</strong></td></tr>
-<tr><td>T→J</td><td style="text-align:center">2</td><td style="text-align:center">4</td><td style="text-align:center">+2</td><td style="text-align:center"><strong>8</strong></td></tr>
-<tr><td>B→M</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">+1</td><td style="text-align:center"><strong>2</strong></td></tr>
-<tr><td>B→J</td><td style="text-align:center">3</td><td style="text-align:center">3</td><td style="text-align:center">+1</td><td style="text-align:center"><strong>7</strong></td></tr>
-<tr><td>P→M</td><td style="text-align:center">3</td><td style="text-align:center">2</td><td style="text-align:center">+2</td><td style="text-align:center"><strong>7</strong></td></tr>
-<tr><td>M→J</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center"><strong>1</strong></td></tr>
+<tr><td>T→B</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td>2+2+1=5</td><td style="text-align:center"><strong>5</strong></td></tr>
+<tr><td>T→P</td><td style="text-align:center">3</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td>3+0+0=3</td><td style="text-align:center"><strong>3</strong></td></tr>
+<tr><td>T→M</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td>1+0+1=2</td><td style="text-align:center"><strong>2</strong></td></tr>
+<tr><td>B→M</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td>1+2+0=3</td><td style="text-align:center"><strong>3</strong></td></tr>
+<tr><td>B→J</td><td style="text-align:center">2</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td>2+4+1=7</td><td style="text-align:center"><strong>7</strong></td></tr>
+<tr><td>P→M</td><td style="text-align:center">2</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td>2+2+1=5</td><td style="text-align:center"><strong>5</strong></td></tr>
+<tr><td>M→J</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td>1+0+0=1</td><td style="text-align:center"><strong>1</strong></td></tr>
+<tr><td>P→J</td><td style="text-align:center">3</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td>3+2+1=6</td><td style="text-align:center"><strong>6</strong></td></tr>
 </tbody>
 </table>
-<p><strong>Critério:</strong> minimizar esforço total (tempo + perigo + precisão).</p>
+<p><strong>Critério:</strong> minimizar esforço = distância + 2×risco + precisão do salto.</p>
 
-
+        
         <div class="grafo">
-            <h3>Representação do Grafo</h3>
-            <pre style="background:#eee;padding:15px;display:inline-block;text-align:left">
-    T -----3----- B
-    |\           /|
-    | \         / |
-    |  5       2  |
-    |   \     /   |
-    |    \   /    |
-    |     P       |
-    |     |       |
-    |     4       |
-    |     |       |
-    |     M       |
-    |     |       |
-    |     1       |
-    |     |       |
-    +-----J-------+
-    (aresta direta T-J = 8)
-    (aresta B-J = 6)
-            </pre>
-            <p><em>Grafo não direcionado com 5 vértices e 7 arestas</em></p>
-        </div>
-    </section>
+         <h3>🕸️ Representação do Grafo</h3>
 
+<div style="text-align:center;">
+    <img 
+        src="images/grafo-vila-miados.jpg"
+        alt="Grafo da Vila dos Miados"
+        style="max-width:900px; width:100%; border-radius:10px;">
+</div>
+           
+ <p>O grafo acima representa a Vila dos Miados. Cada vértice corresponde a um local percorrido pelo gato, enquanto as arestas representam os caminhos possíveis entre esses locais. Os números presentes nas arestas indicam os pesos calculados pela Função de Esforço Felino, utilizada para determinar o custo de cada trajeto.</p>
+
+   </section>
+    
     <section>
         <h2>🧮 3. Algoritmo de Dijkstra - Passo a Passo</h2>
         <h3>Teste 1: Telhado (T) → Janela (J)</h3>
