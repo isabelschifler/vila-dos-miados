@@ -235,69 +235,135 @@
    </section>
     
     <section>
-        <h2>🧮 3. Algoritmo de Dijkstra - Passo a Passo</h2>
-        <h3>Teste 1: Telhado (T) → Janela (J)</h3>
-        
-        <div class="passo">
-            <strong>Passo 1:</strong> Distâncias iniciais: T=0, B=∞, P=∞, M=∞, J=∞<br>
-            Visitados: {T}
-        </div>
-        <div class="passo">
-            <strong>Passo 2:</strong> Visitando T → relaxando arestas:<br>
-            T→B: 0+3=3 → B=3 ✓<br>
-            T→P: 0+5=5 → P=5 ✓<br>
-            T→J: 0+8=8 → J=8 ✓<br>
-            Distâncias: T=0, B=3, P=5, M=∞, J=8
-        </div>
-        <div class="passo">
-            <strong>Passo 3:</strong> Menor distância não visitada: B(3). Visitar B.<br>
-            B→M: 3+2=5 → M=5 (anterior ∞)<br>
-            B→J: 3+6=9 → J permanece 8 (9 é maior)<br>
-            Distâncias: T=0, B=3, P=5, M=5, J=8
-        </div>
-        <div class="passo">
-            <strong>Passo 4:</strong> Menor não visitada: P(5) ou M(5). Visitar P.<br>
-            P→M: 5+4=9 → M permanece 5 (9 é maior)<br>
-            Distâncias: T=0, B=3, P=5, M=5, J=8
-        </div>
-        <div class="passo">
-            <strong>Passo 5:</strong> Visitar M(5).<br>
-            M→J: 5+1=6 → J atualiza: 8 → 6 ✓<br>
-            Distâncias finais: T=0, B=3, P=5, M=5, J=6
-        </div>
-        <div class="passo">
-            <strong>Passo 6:</strong> Visitar J(6). Algoritmo concluído.
-        </div>
+    <h2>🧮 3. Algoritmo de Dijkstra - Passo a Passo</h2>
 
-        <h4>✅ Resultado Teste 1:</h4>
-        <p><strong>Caminho mais curto: T → B → M → J</strong></p>
-        <p>Custo total: 3 + 2 + 1 = <strong>6</strong></p>
-        <p>(Alternativa direta T→J custa 8, mais caro)</p>
+    <h3>Teste 1: Telhado (T) → Janela (J)</h3>
 
-        <h3>Teste 2: Praça (P) → Janela (J)</h3>
-        <div class="passo">
-            <strong>Passo 1:</strong> Distâncias: P=0, T=∞, B=∞, M=∞, J=∞
-        </div>
-        <div class="passo">
-            <strong>Passo 2:</strong> Visitar P → P=0, atualiza: T=5, M=4<br>
-            Distâncias: P=0, T=5, B=∞, M=4, J=∞
-        </div>
-        <div class="passo">
-            <strong>Passo 3:</strong> Menor não visitado: M(4). Visitar M → M=4, atualiza: J=5 (4+1), B=6 (4+2)<br>
-            Distâncias: P=0, T=5, B=6, M=4, J=5
-        </div>
-        <div class="passo">
-            <strong>Passo 4:</strong> Menor não visitado: T(5) ou J(5). Visitar T → T=5, não melhora J (5+8=13)<br>
-            Distâncias: P=0, T=5, B=6, M=4, J=5
-        </div>
-        <div class="passo">
-            <strong>Passo 5:</strong> Visitar J(5) → algoritmo concluído.
-        </div>
+    <div class="passo">
+        <strong>Passo 1:</strong><br>
+        Distâncias iniciais:<br>
+        T = 0, B = ∞, P = ∞, M = ∞, J = ∞
+    </div>
 
-        <h4>✅ Resultado Teste 2:</h4>
-        <p><strong>Caminho mais curto: P → M → J</strong></p>
-        <p>Custo total: 4 + 1 = <strong>5</strong></p>
-    </section>
+    <div class="passo">
+        <strong>Passo 2:</strong><br>
+        Visitando T e relaxando suas arestas:<br>
+        T → B = 0 + 5 = 5<br>
+        T → P = 0 + 3 = 3<br>
+        T → M = 0 + 2 = 2<br><br>
+
+        Distâncias:<br>
+        T = 0, B = 5, P = 3, M = 2, J = ∞
+    </div>
+
+    <div class="passo">
+        <strong>Passo 3:</strong><br>
+        Menor distância não visitada: M (2).<br>
+        Visitando M:<br>
+
+        M → J = 2 + 1 = 3 → J = 3 ✓<br>
+        M → B = 2 + 3 = 5 → B permanece 5<br>
+        M → P = 2 + 5 = 7 → P permanece 3<br><br>
+
+        Distâncias:<br>
+        T = 0, B = 5, P = 3, M = 2, J = 3
+    </div>
+
+    <div class="passo">
+        <strong>Passo 4:</strong><br>
+        Próximo vértice: P (3).<br>
+
+        P → J = 3 + 6 = 9 → J permanece 3<br>
+        P → M = 3 + 5 = 8 → M permanece 2<br>
+        P → T = 3 + 3 = 6 → T permanece 0
+    </div>
+
+    <div class="passo">
+        <strong>Passo 5:</strong><br>
+        Próximo vértice: J (3).<br>
+        Destino alcançado. Algoritmo encerrado.
+    </div>
+
+    <h4>✅ Resultado Teste 1:</h4>
+
+    <p>
+        <strong>Caminho mínimo encontrado:</strong>
+        T → M → J
+    </p>
+
+    <p>
+        <strong>Custo total:</strong>
+        2 + 1 = 3
+    </p>
+
+    <p>
+        O algoritmo mostrou que passar pelo Muro Alto é mais eficiente do que
+        utilizar qualquer outra rota disponível.
+    </p>
+
+
+
+    <h3>Teste 2: Praça dos Amigos (P) → Janela Verde (J)</h3>
+
+    <div class="passo">
+        <strong>Passo 1:</strong><br>
+        Distâncias iniciais:<br>
+        P = 0, T = ∞, B = ∞, M = ∞, J = ∞
+    </div>
+
+    <div class="passo">
+        <strong>Passo 2:</strong><br>
+        Visitando P:<br>
+
+        P → T = 0 + 3 = 3<br>
+        P → M = 0 + 5 = 5<br>
+        P → J = 0 + 6 = 6<br><br>
+
+        Distâncias:<br>
+        P = 0, T = 3, B = ∞, M = 5, J = 6
+    </div>
+
+    <div class="passo">
+        <strong>Passo 3:</strong><br>
+        Menor não visitado: T (3).<br>
+
+        T → B = 3 + 5 = 8 → B = 8<br>
+        T → M = 3 + 2 = 5 → M permanece 5
+    </div>
+
+    <div class="passo">
+        <strong>Passo 4:</strong><br>
+        Próximo vértice: M (5).<br>
+
+        M → J = 5 + 1 = 6 → J permanece 6<br>
+        M → B = 5 + 3 = 8 → B permanece 8
+    </div>
+
+    <div class="passo">
+        <strong>Passo 5:</strong><br>
+        Próximo vértice: J (6).<br>
+        Destino alcançado.
+    </div>
+
+    <h4>✅ Resultado Teste 2:</h4>
+
+    <p>
+        <strong>Caminho mínimo encontrado:</strong>
+        P → J
+    </p>
+
+    <p>
+        <strong>Custo total:</strong>
+        6
+    </p>
+
+    <p>
+        Existe outro caminho com o mesmo custo:
+        <strong>P → M → J</strong>
+        (5 + 1 = 6).
+        Portanto, ambos são caminhos mínimos.
+    </p>
+</section>
 
     <section>
         <h2>📊 4. Análise dos Resultados</h2>
@@ -314,23 +380,26 @@
         <pre style="background:#eee;padding:15px;overflow-x:auto">
 function Dijkstra(grafo, origem, destino):
     distancias[origem] = 0
-    for each vértice v in grafo:
-        if v != origem:
-            distancias[v] = infinito
-        nao_visitados.add(v)
-    
-    while nao_visitados não está vazio:
-        u = vértice em nao_visitados com menor distância
-        nao_visitados.remove(u)
-        
-        for each vizinho v de u:
-            if v está em nao_visitados:
+
+    para cada vértice v:
+        se v ≠ origem:
+            distancias[v] = ∞
+        adicionar v em nao_visitados
+
+    enquanto nao_visitados não vazio:
+        u = vértice com menor distância
+
+        remover u de nao_visitados
+
+        para cada vizinho v de u:
+            se v está em nao_visitados:
                 nova_dist = distancias[u] + peso(u,v)
-                if nova_dist < distancias[v]:
+
+                se nova_dist < distancias[v]:
                     distancias[v] = nova_dist
                     predecessor[v] = u
-    
-    return distancias[destino], reconstruir_caminho(predecessor, destino)
+
+    retornar distancias[destino]
         </pre>
     </section>
 
