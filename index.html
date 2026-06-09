@@ -79,11 +79,44 @@
 
     <section>
         <h2>📚 1. Conceitos Teóricos</h2>
-        <h3>O que é um Grafo?</h3>
-        <p> explique</p>
-        
-        <h3>O que é o Algoritmo de Dijkstra?</h3>
-        <p> explique</p>
+        <h3> O que é um Grafo?</h3>
+        <p>Um <strong>grafo</strong> é uma estrutura matemática utilizada para modelar relações ou conexões entre objetos. Ele é composto por dois elementos principais:</p>
+        <ul>
+            <li><strong>Vértices (ou nós):</strong> representam os objetos ou pontos de interesse.</li>
+            <li><strong>Arestas (ou ramos):</strong> representam as conexões ou caminhos entre os vértices.</li>
+        </ul>
+        <p>Os grafos podem ser classificados de diferentes formas. Quando as arestas possuem um valor numérico associado (custo, distância, tempo, etc.), chamamos de <strong>grafo ponderado</strong>. Caso contrário, é um <strong>grafo não ponderado</strong>. Além disso, um grafo pode ser <strong>direcionado</strong> (as arestas têm sentido) ou <strong>não direcionado</strong> (as arestas representam uma conexão de mão dupla).</p>
+        <p>No contexto do nosso trabalho, a <strong>Vila dos Miados</strong> é representada por um grafo <strong>ponderado e não direcionado</strong>. Os vértices são os cinco locais por onde o gato pode passar (Telhado Central, Beco Escuro, Praça dos Amigos, Muro Alto e Janela Verde). As arestas são os caminhos possíveis entre esses locais, e os pesos representam o <strong>esforço felino</strong> (uma combinação de distância, risco e dificuldade do salto).</p>
+
+        <h3> O que é o Algoritmo de Dijkstra?</h3>
+        <p>O <strong>Algoritmo de Dijkstra</strong> é um algoritmo clássico da Teoria dos Grafos, criado pelo cientista da computação Edsger Dijkstra. Ele é utilizado para encontrar o <strong>caminho de menor custo</strong> entre um vértice de origem e todos os demais vértices de um grafo, desde que <strong>todas as arestas tenham pesos não negativos</strong>.</p>
+
+        <p><strong> Como funciona o algoritmo? (Passo a passo conceitual)</strong></p>
+        <ol>
+            <li>Atribui-se <strong>distância zero</strong> ao vértice de origem e <strong>infinito</strong> a todos os outros vértices.</li>
+            <li>Marca-se todos os vértices como <strong>não visitados</strong>.</li>
+            <li>Repete-se enquanto houver vértices não visitados:
+                <ul style="margin-top: 5px;">
+                    <li><strong>a)</strong> Seleciona-se o vértice <strong>não visitado com a menor distância</strong> (na primeira vez, será a origem).</li>
+                    <li><strong>b)</strong> Para cada <strong>vizinho</strong> deste vértice, calcula-se a <strong>nova distância</strong> = distância atual do vértice + peso da aresta que os conecta.</li>
+                    <li><strong>c)</strong> Se essa nova distância for <strong>menor</strong> que a distância registrada para o vizinho, <strong>atualiza-se</strong> a distância e registra-se o predecessor (para depois reconstruir o caminho).</li>
+                    <li><strong>d)</strong> Marca-se o vértice atual como <strong>visitado</strong> (não será mais analisado).</li>
+                </ul>
+            </li>
+            <li>Ao final, temos a <strong>menor distância</strong> da origem a cada vértice, e podemos reconstruir o caminho mínimo através dos predecessores.</li>
+        </ol>
+
+        <p><strong> Por que usamos o Dijkstra na Vila dos Miados?</strong></p>
+        <p>O gato precisa sair de um ponto de origem (como o Telhado Central ou a Praça dos Amigos) e chegar até a <strong>Janela Verde</strong> (seu destino desejado) gastando o <strong>menor esforço possível</strong>. O esforço é medido por uma função que leva em conta:</p>
+        <ul>
+            <li><strong>Distância</strong> do percurso;</li>
+            <li><strong>Risco</strong> do caminho (se é escuro, se há obstáculos, se há cães);</li>
+            <li><strong>Salto</strong> necessário (pulo pequeno, médio ou arriscado).</li>
+        </ul>
+        <p>Ao aplicar o algoritmo de Dijkstra, conseguimos determinar, de forma precisa e matemática, qual a <strong>rota mais eficiente</strong> para o gato, evitando que ele escolha um caminho longo ou perigoso por engano. O algoritmo analisa <strong>combinações de arestas</strong> e não apenas caminhos diretos, garantindo a solução ótima.</p>
+
+        <p>Com isso, o algoritmo de Dijkstra garante que o gato sempre encontrará o caminho de menor esforço, evitando riscos desnecessários e otimizando seu trajeto até a Janela Verde.</p>
+    </section>
     </section>
 
     <section>
