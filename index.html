@@ -403,14 +403,150 @@
     </p>
 </section>
 
-    <section>
+     <section>
         <h2>📊 4. Análise dos Resultados</h2>
-        <p>O algoritmo de Dijkstra encontrou caminhos que <strong>não são os mais óbvios</strong>:</p>
+
+        <p>
+        Após a modelagem da Vila dos Miados e a aplicação do algoritmo de Dijkstra,
+        foi possível identificar os caminhos de menor custo entre diferentes pontos
+        da vila, considerando distância, risco e dificuldade dos saltos.
+        </p>
+
+        <h3>Teste 1: Telhado Central (T) → Janela Verde (J)</h3>
+
+        O algoritmo encontrou como caminho mínimo:
+        <strong>T → M → J</strong>
+        </p>
+
+        <p><strong>Cálculo do custo:</strong></p>
+
         <ul>
-            <li>De Telhado à Janela, o caminho direto parecia rápido, mas o algoritmo mostrou que o caminho <strong>T→B→M→J</strong> é melhor (custo 6 vs 8).</li>
-            <li>De Praça à Janela, o caminho <strong>P→M→J</strong> foi o escolhido (custo 5), ignorando caminhos mais longos.</li>
-            <li>Isso mostra como o algoritmo avalia <strong>combinações de arestas</strong> em vez de apenas rotas diretas.</li>
+            <li>T → M = 2</li>
+            <li>M → J = 1</li>
         </ul>
+
+        <p>
+        <strong>Custo total = 3</strong>
+        </p>
+
+        <h4>Análise</h4>
+
+        <p>
+        Embora existam rotas diretas e alternativas para chegar à Janela Verde,
+        nenhuma delas possui custo inferior a 3.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Caminho</th>
+                    <th>Custo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>T → M → J</td><td><strong>3</strong></td></tr>
+                <tr><td>T → P → J</td><td>9</td></tr>
+                <tr><td>T → B → J</td><td>12</td></tr>
+                <tr><td>T → B → M → J</td><td>9</td></tr>
+                <tr><td>T → P → M → J</td><td>9</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            O resultado mostra que o vértice <strong>M (Muro Alto)</strong>
+            funciona como um ponto estratégico da rede, pois possui conexões de
+            baixo custo e oferece acesso rápido à Janela Verde.
+        </p>
+
+        <p>
+            Além disso, a aresta <strong>M → J</strong> possui peso 1, o menor
+            peso de todo o grafo, tornando esse trecho é extremamente vantajoso.
+        </p>
+
+        <hr>
+
+        <h3>Teste 2: Praça dos Amigos (P) → Janela Verde (J)</h3>
+
+        <p>
+            O algoritmo encontrou:
+            <strong>P → J</strong>
+        </p>
+
+        <p>
+            <strong>Custo total = 6</strong>
+        </p>
+
+        <p>
+            Entretanto, existem outros caminhos com exatamente o mesmo custo.
+        </p>
+
+        <h4>Análise</h4>
+
+        <p>
+            Neste caso, o grafo apresenta dois caminhos mínimos equivalentes.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Caminho</th>
+                    <th>Custo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>P → J</td><td><strong>6</strong></td></tr>
+                <tr><td>P → M → J</td><td><strong>6</strong></td></tr>
+                <tr><td>P → T → M → J</td><td><strong>6</strong></td></tr>
+                <tr><td>P → T → B → J</td><td>15</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            Observa-se que o caminho direto possui menos etapas, enquanto os
+            caminhos que passam pelo Muro Alto aproveitam a aresta de menor peso
+            do grafo (M → J). Dependendo da implementação, o algoritmo pode
+            retornar qualquer um dos caminhos mínimos encontrados.
+        </p>
+
+        <h3>Importância dos Pesos</h3>
+
+        <p>
+            Os resultados demonstram que o caminho mais curto em número de arestas
+            nem sempre é o melhor. O algoritmo considera os pesos associados a cada
+            ligação, que representam:
+        </p>
+
+        <ul>
+            <li>Distância percorrida;</li>
+            <li>Nível de risco do caminho;</li>
+            <li>Dificuldade dos saltos necessários.</li>
+        </ul>
+
+        <p>
+            Dessa forma, a rota escolhida minimiza o esforço total do gato e não
+            apenas a quantidade de vértices visitados.
+        </p>
+
+        <h3>Conclusão</h3>
+
+        <p>
+            A aplicação do algoritmo de Dijkstra mostrou-se eficiente para
+            determinar as melhores rotas na Vila dos Miados.
+        </p>
+
+        <ol>
+            <li>O <strong>Muro Alto (M)</strong> é o vértice mais estratégico da rede.</li>
+            <li>O caminho <strong>T → M → J</strong> é a melhor rota entre o Telhado Central e a Janela Verde, com custo total igual a <strong>3</strong>.</li>
+            <li>Entre a Praça dos Amigos e a Janela Verde existem múltiplos caminhos mínimos com custo <strong>6</strong>.</li>
+            <li>A atribuição de pesos baseada em distância, risco e dificuldade dos saltos permitiu representar de forma realista o esforço necessário para o deslocamento do gato.</li>
+        </ol>
+
+        <p>
+            Portanto, o modelo criado e os resultados obtidos confirmam que o
+            algoritmo de Dijkstra é adequado para resolver problemas de roteamento
+            em grafos ponderados, identificando sempre o caminho de menor custo
+            entre dois pontos da rede.
+        </p>
     </section>
 
     <section>
