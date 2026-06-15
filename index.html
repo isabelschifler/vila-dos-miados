@@ -552,26 +552,81 @@
     <section>
         <h2>💻 5. Pseudocódigo do Algoritmo</h2>
         <pre style="background:#eee;padding:15px;overflow-x:auto">
-function Dijkstra(grafo, origem, destino):
-    distancias[origem] = 0
+function dijkstra(grafo, origem, destino) {
+    let distancias = {};
+    let predecessores = {};
+    let naoVisitados = new Set();
 
-    para cada vértice v:
-        se v ≠ origem:
-            distancias[v] = ∞
-        adicionar v em nao_visitados
+    // Inicialização
+    for (let vertice in grafo) {
+        distancias[vertice] = Infinity;
+        naoVisitados.add(vertice);
+    }
 
-    enquanto nao_visitados não vazio:
-        u = vértice com menor distância
+    distancias[origem] = 0;
 
-        remover u de nao_visitados
+    while (naoVisitados.size > 0) {
 
-        para cada vizinho v de u:
-            se v está em nao_visitados:
-                nova_dist = distancias[u] + peso(u,v)
+        // Encontra o vértice não visitado com menor distância
+        let atual = null;
 
-                se nova_dist < distancias[v]:
-                    distancias[v] = nova_dist
-                    predecessor[v] = u
+        for (let vertice of naoVisitados) {
+            if (
+                atual === null ||
+                distancias[vertice] < distancias[atual]
+            ) {
+                atual = vertice;
+            }
+        }
+
+        // Se chegou ao destino, pode parar
+        if (atual === destino) {
+            break;
+        }
+
+        naoVisitados.delete(atual);
+
+        // Analisa os vizinhos
+        for (let vizinho in grafo[atual]) {
+            let novaDistancia =
+                distancias[atual] + grafo[atual][vizinho];
+
+            if (novaDistancia < distancias[vizinho]) {
+                distancias[vizinho] = novaDistancia;
+                predecessores[vizinho] = atual;
+            }
+        }
+    }
+
+    // Reconstrução do caminho
+    let caminho = [];
+    let atual = destino;
+
+    while (atual) {
+        caminho.unshift(atual);
+        atual = predecessores[atual];
+    }
+
+    return {
+        caminho,
+        custo: distancias[destino]
+    };
+}
+
+// Grafo da Vila dos Miados
+const grafo = {
+    T: { B: 5, P: 3, M: 2 },
+    B: { T: 5, M: 3, J: 7 },
+    P: { T: 3, M: 5, J: 6 },
+    M: { T: 2, B: 3, P: 5, J: 1 },
+    J: { B: 7, P: 6, M: 1 }
+};
+
+// Teste 1
+console.log(dijkstra(grafo, "T", "J"));
+
+// Teste 2
+console.log(dijkstra(grafo, "P", "J"));
 
     retornar distancias[destino]
         </pre>
